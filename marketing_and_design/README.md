@@ -9,8 +9,17 @@ The goal of this module is to produce some visual aspect of your company that th
 
 ## Documents
 
-If you have any design documents or business documents, please point to them here 
+Documents include different version of the logo that appear on the site.
+
+![logo](branding/jurassic-tasks-logo.png)
+![logo without bg](branding/jurassic-tasks-logo-no-bg.png)
+![logo without text](branding/jurassic-tasks-logo-no-text.png)
+![minimal logo](branding/jurassic-tasks-logo-no-textbg.png)
 
 ## Installation Instructions
 
-If you are creating a web app and have running instructions, please put them here. We recommend creating a web app through `npm create vite@latest` so that we can easily run it by running npm start.
+We created the page with `npm create vite@latest` so you should just have to run:
+
+```bash
+npm run start
+```
