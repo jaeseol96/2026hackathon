@@ -11,8 +11,8 @@
         <div class="hero-inner">
           <h1>Projects that roar into action.</h1>
           <p>
-            Jurassic Tasks helps track task progression in a fun and engaging
-            way.
+            Our mission is to save the world from the extinction of
+            productivity, one virtual dinosaur at a time.
           </p>
         </div>
       </section>
