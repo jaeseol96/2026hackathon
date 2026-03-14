@@ -31,11 +31,25 @@ export class PlacementEngine {
     }
 
     isAdCompatibleWithArea(ad: Ad, area: Area): boolean {
-        return false;
+        var compatible = true;
+        for (const location of ad.bannedLocations) {
+            if (location === area.location) {
+                compatible = false;
+            }
+        }
+        if (ad.duration > area.timeWindow) {
+            compatible = false;
+        }
+        return compatible;
     }
 
     getTotalScheduledTimeForArea(areaSchedule: ScheduledAd[]): number {
-        return 0;
+        let sum: number = 0;
+        for (const sched of areaSchedule) {
+            sum += sched.endTime - sched.startTime;
+        }
+
+        return sum;
     }
 
     doesPlacementFitTimingConstraints(
@@ -43,7 +57,10 @@ export class PlacementEngine {
         area: Area,
         startTime: number
     ): boolean {
-        return false;
+        return (!(startTime < ad.timeReceived)
+            && (startTime + ad.duration < ad.timeout)
+            && (startTime - ad.timeReceived <= ad.timeout)
+            && (ad.duration <= area.timeWindow));
     }
 
     isAdAlreadyScheduled(adId: string, schedule: Schedule): boolean {
