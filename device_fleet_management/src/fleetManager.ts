@@ -15,7 +15,19 @@ export class FleetManager {
     }
 
     removeUser(id: string): void {
-        //when we remove a user, we need to make sure all devices associated with the user are also removed
+        if (!this.userManager.getUser(id)) {
+            throw new Error(`User with id ${id} not found`);
+        }
+
+        const toRemove = this.deviceManager
+            .getAllDevices()
+            .filter((device) => device.user_id === id);
+
+        for (const device of toRemove) {
+            this.deviceManager.removeDevice(device.id);
+        }
+
+        this.userManager.removeUser(id);
     }
 
     getUser(id: string): User | null {
@@ -23,7 +35,11 @@ export class FleetManager {
     }
 
     addDevice(device: Device): void {
-        // when we add a device, we need to make sure it has a valid user_id
+        if (!this.userManager.getUser(device.user_id)) {
+            throw new Error(`Cannot add device: User with id ${device.user_id} not found`);
+        }
+
+        this.deviceManager.addDevice(device);
     }
 
     removeDevice(id: string): void {
